@@ -20,7 +20,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
                             <th><?= __("NPM") ?></th>
-                            <th><?= __("Nama") ?></th>
+                            <th><?= __("Nama Mahasiswa") ?></th>
                             <th><?= __("Mata Kuliah") ?></th>
                             <th><?= __("Pengawas") ?></th>
                             <th><?= __("Jenis Pelanggaran") ?></th>

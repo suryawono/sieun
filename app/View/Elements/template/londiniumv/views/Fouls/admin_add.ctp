@@ -23,7 +23,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("Foul.name", __("Nama"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->label("Foul.name", __("Nama Mahasiswa"), array("class" => "col-md-4 control-label"));
                                             echo $this->Form->input("Foul.name", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
                                             ?>
                                         </div>
