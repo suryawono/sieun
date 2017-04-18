@@ -24,6 +24,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                             <th><?= __("Mata Kuliah") ?></th>
                             <th><?= __("Pengawas") ?></th>
                             <th><?= __("Jenis Pelanggaran") ?></th>
+                            <th><?= __("Tanggal Ujian") ?></th>
                             <th><?= __("Keterangan") ?></th>
                             <th width="100"><?= __("Aksi") ?></th>
                         </tr>
@@ -36,7 +37,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                         if (empty($data['rows'])) {
                             ?>
                             <tr>
-                                <td class = "text-center" colspan ="9">Tidak Ada Data</td>
+                                <td class = "text-center" colspan ="10">Tidak Ada Data</td>
                             </tr>
                             <?php
                         } else {
@@ -50,6 +51,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                                     <td><?= $item['Course']['name'] ?></td>
                                     <td><?= $item['Pengawas']["Biodata"]["full_name"] ?></td>
                                     <td><?= $item['FoulType']['name'] ?></td>
+                                    <td><?= $this->Html->cvtTanggal($item['Foul']['d'], false) ?></td>
                                     <td><?= $item['Foul']['keterangan'] ?></td>
                                     <td class="text-center">
                                         <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/edit", ["editUrl" => Router::url("/admin/{$this->params['controller']}/edit/{$item[Inflector::classify($this->params['controller'])]['id']}")]) ?>
