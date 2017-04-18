@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="block-inner text-danger">
-                    <h6 class="heading-hr"><?= __("Tambah Pelanggaran") ?>
+                    <h6 class="heading-hr"><?= __("Ubah Pelanggaran") ?>
                     </h6>
                 </div>
                 <div class="table-responsive">
