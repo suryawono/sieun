@@ -100,6 +100,7 @@ define("_APP_NAME","Sistem Informasi Evaluasi Ujian");
 define("_APP_REFERENCE_NAME","SILAFIS");
 define("_APP_KEY","random");
 define("_APP_CORPORATE","UNPAR");
+define("_APP_CORPORATE_FULL","UNIVERSITAS KATHOLIK PARAHYANGAN");
 define("_APP_START","2017");
 
 define("_DEVELOPER_NAME","Surya Wono");
