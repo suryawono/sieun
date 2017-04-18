@@ -97,10 +97,10 @@ define("_EMPTY_IMAGE", "/img/no_image.jpg");
 
 define("_APP_VERSION","1.0.0");
 define("_APP_NAME","Sistem Informasi Evaluasi Ujian");
-define("_APP_REFERENCE_NAME","SILAFIS");
+define("_APP_REFERENCE_NAME","SIEUN");
 define("_APP_KEY","random");
-define("_APP_CORPORATE","UNPAR");
-define("_APP_CORPORATE_FULL","UNIVERSITAS KATHOLIK PARAHYANGAN");
+define("_APP_CORPORATE","FTIS UNPAR");
+define("_APP_CORPORATE_FULL","FAKULTAS TEKNOLOGI INFORMASI DAN SAINS - UNIVERSITAS KATHOLIK PARAHYANGAN");
 define("_APP_START","2017");
 
 define("_DEVELOPER_NAME","Surya Wono");
