@@ -1,5 +1,5 @@
 <div class="breadcrumb-line">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb" style="background-color:#a50000 !important">
         <li><a href="<?php echo Router::url("/admin/dashboard") ?>">Dashboard</a></li>
         <?php
         switch ($url) {
@@ -24,7 +24,11 @@
         }
         ?>
     </ul>
-    <strong><div class="breadcrumb pull-right" style="color:white"><i class="icon-clock3"></i>&nbsp;&nbsp;<span id="targetDigitalTime"></span></div></strong>
+    <ul class="breadcrumb-buttons" style="background-color:#a50000 !important">
+        <li class="dropdown" style="padding:9px 25px 10px;margin-top:5px">
+            <div class="" style="color:white"><i class="icon-clock3"></i>&nbsp;&nbsp;<span id="targetDigitalTime"></span></div>
+        </li>
+    </ul>
 </div>
 <script>
     $(document).ready(function () {
