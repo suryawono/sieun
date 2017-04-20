@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
         <title><?= _APP_NAME?> - <?= _APP_CORPORATE?></title>
-        <link rel="icon" type="image/gif/png/ico" href="<?= Router::url("/favicon.ico",true)?>">
+        <link rel="icon" href="<?= Router::url("/favicon.ico",true)?>">
         <?php
         $this->Template->import(array("application.js"));
         ?>
