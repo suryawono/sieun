@@ -30,5 +30,9 @@ class ExamFileRetrievalsController extends AppController {
         $this->_options();
         parent::beforeRender();
     }
-
+    
+    function admin_index() {
+        $this->_activePrint(func_get_args(), "laporan_pengambilan_berkas_kurang_dari_20_menit");
+        parent::admin_index();
+    }
 }

@@ -33,5 +33,9 @@ class ExamAbsentsController extends AppController {
         $this->_options();
         parent::beforeRender();
     }
-
+    
+    function admin_index() {
+        $this->_activePrint(func_get_args(), "laporan_absen_ujian");
+        parent::admin_index();
+    }
 }

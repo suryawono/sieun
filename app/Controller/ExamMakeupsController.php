@@ -40,4 +40,9 @@ class ExamMakeupsController extends AppController {
             echo json_encode($this->_generateStatusCode(400));
         }
     }
+    
+    function admin_index() {
+        $this->_activePrint(func_get_args(), "laporan_permohonan_ujian_susulan");
+        parent::admin_index();
+    }
 }

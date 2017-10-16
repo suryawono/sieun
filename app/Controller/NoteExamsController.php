@@ -30,4 +30,9 @@ class NoteExamsController extends AppController {
         $this->_options();
         parent::beforeRender();
     }
+    
+    function admin_index() {
+        $this->_activePrint(func_get_args(), "laporan_catatan_pengawas");
+        parent::admin_index();
+    }
 }
