@@ -20,7 +20,7 @@ class ExamAcademicYear extends AppModel {
         ],
     );
     var $virtualFields = array(
-        
+        "periode" => "concat(ExamAcademicYear.start_year, '/', ExamAcademicYear.end_year)"
     );
 
     function beforeValidate($options = array()) {
