@@ -62,6 +62,14 @@ class AppHelper extends Helper {
         }
         return "$tgl $bulan $tahun";
     }
+    
+    function year_period($start_year, $end_year) {
+        if(!empty($start_year) && !empty($end_year)) {
+            return $start_year . " / " . $end_year;
+        } else {
+            return "-";
+        }
+    }
 
     function periodeInd($periode = null) {
         $p = explode("/", $periode);
