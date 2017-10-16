@@ -6,6 +6,10 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-file-retrieval");
         <div class="block-inner text-danger">
             <h6 class="heading-hr"><?= __("Pengambilan Berkas < 20 Menit") ?>
                 <div class="pull-right">
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('print', '<?php echo Router::url("index/print?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-print2"></i> 
+                        <?= __("Cetak") ?>
+                    </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
                 </div>
