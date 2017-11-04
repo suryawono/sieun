@@ -1,6 +1,8 @@
 <?php
 echo $this->Html->script('jquery.min');
 ?>
+<title><?= _APP_NAME ?> - <?= _APP_CORPORATE ?></title>
+<link rel="icon" href="<?= Router::url("/favicon.ico", true) ?>">
 <script>
     $(document).ready(function () {
         window.print();
@@ -8,7 +10,7 @@ echo $this->Html->script('jquery.min');
 </script>
 <div class="no-margin no-padding text-center" style="width:100%">
     <div style="display:inline-block">
-        <?= _APP_NAME?>
+        <?= _APP_NAME ?>
     </div>
 </div>
 <hr/>
