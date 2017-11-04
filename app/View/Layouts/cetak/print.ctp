@@ -6,6 +6,11 @@ echo $this->Html->script('jquery.min');
         window.print();
     })
 </script>
+<div class="no-margin no-padding text-center" style="width:100%">
+    <div style="display:inline-block">
+        <?= _APP_NAME?>
+    </div>
+</div>
 <hr/>
 <style>
     .no-margin *{

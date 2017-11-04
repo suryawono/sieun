@@ -9,13 +9,8 @@ header("Content-Transfer-Encoding: binary");
 echo $this->Html->script('jquery.min');
 ?>
 <div class="no-margin text-center" style="width:100%">
-    <?php
-    $entity = ClassRegistry::init("EntityConfiguration")->find("first");
-    ?>
     <div style="display:inline-block">
-        <?php
-        echo preg_replace('/\s\s+/', "", $entity['EntityConfiguration']['header']);
-        ?>
+        <?= _APP_NAME ?>
     </div>
 </div>
 <hr/>
