@@ -4,11 +4,11 @@ App::import('Vendor', 'PHPExcel');
 
 $objPHPExcel = new PHPExcel();
 
-$objPHPExcel->setActiveSheetIndex(0)
-        ->setCellValue('A1', 'Hello')
-        ->setCellValue('B2', 'world!')
-        ->setCellValue('C1', 'Hello')
-        ->setCellValue('D2', 'world!');
+if (!isset($excelData)) {
+    $excelData = [];
+}
+
+$objPHPExcel->getActiveSheet()->fromArray($excelData, null, 'A1');
 $objPHPExcel->setActiveSheetIndex(0);
 
 header("Cache-Control: no-cache, must-revalidate");
@@ -21,5 +21,4 @@ header("Content-Transfer-Encoding: binary");
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 exit;
-
 ?>
