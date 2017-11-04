@@ -6,19 +6,6 @@ echo $this->Html->script('jquery.min');
         window.print();
     })
 </script>
-<div class="no-margin no-padding text-center" style="width:100%">
-    <?php
-    $entity = ClassRegistry::init("EntityConfiguration")->find("first");
-    ?>
-    <div style="display:inline-block">
-        <img src="<?= Router::url($entity['EntityConfiguration']['logo1'], true) ?>" height="100px"/>
-    </div>
-    <div style="display:inline-block">
-        <?php
-        echo $entity['EntityConfiguration']['header'];
-        ?>
-    </div>
-</div>
 <hr/>
 <style>
     .no-margin *{
