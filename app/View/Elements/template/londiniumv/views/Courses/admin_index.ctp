@@ -6,6 +6,10 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/course");
         <div class="block-inner text-danger">
             <h6 class="heading-hr"><?= __("MATA KULIAH") ?>
                 <div class="pull-right">
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('excel', '<?php echo Router::url("index/excel?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-file-excel"></i>
+                        Excel
+                    </button>&nbsp;
                     <button class="btn btn-xs btn-default" type="button" onclick="exp('print', '<?php echo Router::url("index/print?" . $_SERVER['QUERY_STRING'], true) ?>')">
                         <i class="icon-print2"></i> 
                         <?= __("Cetak") ?>
