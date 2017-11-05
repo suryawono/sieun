@@ -11,7 +11,7 @@ class CoursesController extends AppController {
 
     function beforeFilter() {
         parent::beforeFilter();
-        $this->_setPageInfo("admin_index", "");
+        $this->_setPageInfo("admin_index", "Data Mata Kuliah");
         $this->_setPageInfo("admin_add", "");
         $this->_setPageInfo("admin_edit", "");
     }
