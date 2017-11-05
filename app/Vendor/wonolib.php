@@ -160,7 +160,8 @@ function xlsToArray($file) {
         $highestColumn = $sheet->getHighestColumn();
         $readData = [];
         for ($row = 1; $row <= $highestRow; $row++) {
-            $readData[] = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+             $rowData= $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+             $readData[]=$rowData[0];
         }
         return $readData;
     } catch (Exception $e) {

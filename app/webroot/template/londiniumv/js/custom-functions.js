@@ -5,7 +5,7 @@ $(document).ready(function () {
             window.location = $(this).find("a").attr("href");
         }
     });
-    
+
 })
 
 function filterReload() {
@@ -20,7 +20,7 @@ function displayError(data) {
 
 }
 
-function modalChangepp(){
+function modalChangepp() {
     $("#modalgantipp").modal("show");
 }
 
@@ -33,6 +33,9 @@ function exp(type, link) {
             window.open(link);
             break;
         case "pdf":
+            window.open(link);
+            break;
+        case "etc":
             window.open(link);
             break;
     }
