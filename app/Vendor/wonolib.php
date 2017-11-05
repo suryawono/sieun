@@ -148,3 +148,23 @@ function excelCFN($num) {
         return $letter;
     }
 }
+
+function xlsToArray($file) {
+    App::import('Vendor', 'PHPExcel');
+    try {
+        $inputFileType = PHPExcel_IOFactory::identify($file);
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+        $objPHPExcel = $objReader->load($file);
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+        $readData = [];
+        for ($row = 1; $row <= $highestRow; $row++) {
+            $readData[] = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+        }
+        return $readData;
+    } catch (Exception $e) {
+        $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
+        return false;
+    }
+}
