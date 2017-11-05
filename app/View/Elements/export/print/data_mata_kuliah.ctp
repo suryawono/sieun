@@ -1,6 +1,6 @@
 <div style="text-align: center">
     <div style="font-size:11px;font-weight: bold; font-family:Tahoma, Geneva, sans-serif;">
-        Daftar Mata Kuliah
+        <?= $pageInfo["titlePage"] ?>
     </div>
 </div>
 <br>

@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="block-inner text-danger">
-                    <h6 class="heading-hr"><?= __("Tambah Catatan Pengawas") ?>
+                    <h6 class="heading-hr"><?= __("Tambah Kategori Semester") ?>
                     </h6>
                 </div>
                 <div class="table-responsive">
@@ -15,7 +15,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamAcademicAbsent.name", __("Nama"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->label("ExamAcademicAbsent.name", __("Nama Kategori Semester"), array("class" => "col-md-4 control-label"));
                                             echo $this->Form->input("ExamAcademicAbsent.name", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
                                             ?>
                                         </div>
