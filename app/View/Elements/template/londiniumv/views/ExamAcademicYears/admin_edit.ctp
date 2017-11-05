@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="block-inner text-danger">
-                    <h6 class="heading-hr"><?= __("Ubah Kategori Ujian") ?>
+                    <h6 class="heading-hr"><?= __("Ubah Tahun Ajaran Akademik") ?>
                     </h6>
                 </div>
                 <div class="table-responsive">
@@ -33,20 +33,6 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <?php
-                                            echo $this->Form->label("ExamAcademicYear.order", __("Order"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("ExamAcademicYear.order", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 <div class="form-actions text-right">
                                     <input name="Button" type="button" onclick="history.go(-1);" class="btn btn-success" value="<?= __("Kembali") ?>">
                                     <input type="reset" value="Reset" class="btn btn-info">
@@ -62,8 +48,8 @@
 </div>
 <?php echo $this->Form->end() ?>
 <script>
-    $(document).ready(function() {
-        $("#startYear").on("keyup", function() {
+    $(document).ready(function () {
+        $("#startYear").on("keyup", function () {
             var start_year = parseInt($(this).val());
             var end_year = start_year + 1;
             $("#endYear").val(end_year);

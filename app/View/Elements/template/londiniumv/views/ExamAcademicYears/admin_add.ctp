@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="block-inner text-danger">
-                    <h6 class="heading-hr"><?= __("Tambah Kategori Ujian") ?>
+                    <h6 class="heading-hr"><?= __("Tambah Tahun Ajaran Akademik") ?>
                     </h6>
                 </div>
                 <div class="table-responsive">
@@ -25,20 +25,6 @@
                                             <?php
                                             echo $this->Form->label("ExamAcademicYear.end_year", __("End Year"), array("class" => "col-md-4 control-label"));
                                             echo $this->Form->input("ExamAcademicYear.end_year", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", 'readonly', 'id' => "endYear"));
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <?php
-                                            echo $this->Form->label("ExamAcademicYear.order", __("Order"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("ExamAcademicYear.order", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
                                             ?>
                                         </div>
                                     </div>

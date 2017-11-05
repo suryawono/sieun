@@ -4,8 +4,16 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-year");
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="block-inner text-danger">
-            <h6 class="heading-hr"><?= __("Tahun Ajaran Akademik") ?>
+            <h6 class="heading-hr"><?= $pageInfo["titlePage"] ?>
                 <div class="pull-right">
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('excel', '<?php echo Router::url("index/excel?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-file-excel"></i>
+                        Excel
+                    </button>&nbsp;
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('print', '<?php echo Router::url("index/print?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-print2"></i> 
+                        <?= __("Cetak") ?>
+                    </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
                 </div>
@@ -20,7 +28,6 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-year");
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
                             <th><?= __("Tahun Ajaran") ?></th>
-                            <th width="200"><?= __("Order") ?></th>
                             <th width="50"><?= __("Aksi") ?></th>
                         </tr>
                     </thead>
@@ -32,7 +39,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-year");
                         if (empty($data['rows'])) {
                             ?>
                             <tr>
-                                <td class = "text-center" colspan ="5">Tidak Ada Data</td>
+                                <td class = "text-center" colspan ="4">Tidak Ada Data</td>
                             </tr>
                             <?php
                         } else {
@@ -41,8 +48,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-year");
                                 <tr id="row-<?= $i ?>" class="removeRow<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>">
                                     <td class="text-center"><input type="checkbox" name="data[<?php echo Inflector::classify($this->params['controller']) ?>][checkbox][]" value="<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>"  id="checkBoxRow" class="styled checkboxDeleteRow" /></td>
                                     <td class="text-center"><?= $i ?></td>
-                                    <td class="text-center"><?= $this->Html->year_period($item['ExamAcademicYear']['start_year'], $item['ExamAcademicYear']['end_year']) ?></td>
-                                    <td class="text-center"><?= $item['ExamAcademicYear']['order'] ?></td>
+                                    <td class="text-center"><?= $item['ExamAcademicYear']['periode'] ?></td>
                                     <td class="text-center">
                                         <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/edit", ["editUrl" => Router::url("/admin/{$this->params['controller']}/edit/{$item[Inflector::classify($this->params['controller'])]['id']}")]) ?>
                                     </td>

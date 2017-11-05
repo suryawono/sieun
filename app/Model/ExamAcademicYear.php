@@ -11,8 +11,14 @@ class ExamAcademicYear extends AppModel {
     );
     var $validate = array(
         "start_year" => [
-            "rule" => "notEmpty",
-            "message" => "Harus Diisi"
+            [
+                "rule" => "notEmpty",
+                "message" => "Harus Diisi"
+            ],
+            [
+                "rule" => "isUnique",
+                "message" => "Sudah ada"
+            ],
         ],
         "end_year" => [
             "rule" => "notEmpty",
