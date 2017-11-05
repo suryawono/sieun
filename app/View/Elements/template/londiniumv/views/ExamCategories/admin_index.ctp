@@ -4,8 +4,16 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-category");
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="block-inner text-danger">
-            <h6 class="heading-hr"><?= __("Kategori Ujian") ?>
+            <h6 class="heading-hr"><?= $pageInfo["titlePage"] ?>
                 <div class="pull-right">
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('excel', '<?php echo Router::url("index/excel?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-file-excel"></i>
+                        Excel
+                    </button>&nbsp;
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('print', '<?php echo Router::url("index/print?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-print2"></i> 
+                        <?= __("Cetak") ?>
+                    </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
                 </div>
@@ -21,7 +29,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-category");
                             <th width="50">No</th>
                             <th><?= __("Unique Name") ?></th>
                             <th><?= __("Name") ?></th>
-                            <th><?= __("Order") ?></th>
+                            <th width="50"><?= __("Order") ?></th>
                             <th width="50"><?= __("Aksi") ?></th>
                         </tr>
                     </thead>
