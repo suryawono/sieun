@@ -86,7 +86,7 @@ if (!isset($excelData) || empty($excelData)) {
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 header('Content-Type: application/vnd.ms-excel');
-header("Content-Disposition: attachment; filename=" . $pageInfo["titlePage"] . "_" . date('dmY') . ".xls");
+header("Content-Disposition: attachment; filename=" . str_replace(' ', '_', strtolower($pageInfo["titlePage"])) . "_" . date('Ymd') . ".xls");
 header("Content-Description: Generated Report");
 header("Content-Transfer-Encoding: binary");
 
