@@ -590,23 +590,17 @@ class AppController extends Controller {
             )
         );
         $rows = $this->Paginator->paginate($this->{ Inflector::classify($this->name) });
+        $this->_excelData($rows);
         $data = array(
             'rows' => $rows,
-//            'rows' => [],
         );
         $this->set(compact('data'));
-//        if ($this->args === false) {
-//            $args = func_get_args();
-//        } else {
-//            $args = $this->args;
-//        }
-//        if (isset($args[0])) {
-//            $jenis = $args[0];
-//            $this->cetak = $jenis;
-//                $this->render($this->cetak_template);
-//        }
     }
 
+    function _excelData($rows){
+        
+    }
+    
     function admin_add() {
         if ($this->request->is("post")) {
             $this->{ Inflector::classify($this->name) }->set($this->data);

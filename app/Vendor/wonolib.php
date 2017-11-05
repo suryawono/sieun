@@ -15,7 +15,7 @@ function hargaAkhir($hargaAwal, $discount = -1, $promo = -1, $promoType = -1, $p
                 $discountAmount = $discount * $hargaAwal / 100;
                 $harga = $hargaAwal - $discountAmount;
                 if ($promoType == 2) {
-                    $harga-=$promo;
+                    $harga -= $promo;
                     if ($harga < 0) {
                         $harga = 0;
                     }
@@ -72,7 +72,7 @@ function createDateRangeArray($strDateFrom, $strDateTo) {
     if ($iDateTo >= $iDateFrom) {
         array_push($aryRange, date('Y-m-d', $iDateFrom)); // first entry
         while ($iDateFrom < $iDateTo) {
-            $iDateFrom+=86400; // add 24 hours
+            $iDateFrom += 86400; // add 24 hours
             array_push($aryRange, date('Y-m-d', $iDateFrom));
         }
     }
@@ -131,9 +131,20 @@ function romanic_number($integer, $upcase = true) {
 }
 
 //http://stackoverflow.com/questions/1252693/using-str-replace-so-that-it-only-acts-on-the-first-match
-function str_replace_first($from, $to, $subject)
-{
-    $from = '/'.preg_quote($from, '/').'/';
+function str_replace_first($from, $to, $subject) {
+    $from = '/' . preg_quote($from, '/') . '/';
 
     return preg_replace($from, $to, $subject, 1);
+}
+
+//https://stackoverflow.com/questions/3302857/algorithm-to-get-the-excel-like-column-name-of-a-number
+function excelCFN($num) {
+    $numeric = ($num - 1) % 26;
+    $letter = chr(65 + $numeric);
+    $num2 = intval(($num - 1) / 26);
+    if ($num2 > 0) {
+        return getNameFromNumber($num2) . $letter;
+    } else {
+        return $letter;
+    }
 }
