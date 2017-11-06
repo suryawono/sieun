@@ -165,7 +165,6 @@ function xlsToArray($file) {
         }
         return $readData;
     } catch (Exception $e) {
-        $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
         return false;
     }
 }

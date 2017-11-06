@@ -27,7 +27,7 @@ class CoursesController extends AppController {
             if ($this->{ Inflector::classify($this->name) }->saveAll($this->{ Inflector::classify($this->name) }->data, array('validate' => 'only', "deep" => true))) {
 
                 $courseExcel = xlsToArray($this->Course->data["Course"]["excel"]["tmp_name"]);
-                $countNewData=0;
+                $countNewData = 0;
                 if ($courseExcel != false) {
                     foreach ($courseExcel as $i => $rowData) {
                         if ($i < 4) {
@@ -60,9 +60,10 @@ class CoursesController extends AppController {
                             }
                         }
                     }
+                    $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
+                } else {
+                    $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
                 }
-                $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
-//                $this->redirect(array('action' => 'admin_index'));
             } else {
                 $this->validationErrors = $this->{ Inflector::classify($this->name) }->validationErrors;
                 $this->Session->setFlash(__("Harap mengecek kembali kesalahan dibawah."), 'default', array(), 'danger');
