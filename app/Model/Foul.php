@@ -10,6 +10,9 @@ class Foul extends AppModel {
             "className" => "Account",
             "foreignKey" => "pengawas_id",
         ],
+        "ExamCategory",
+        "ExamAcademicYear",
+        "ExamAcademicCategory",
     );
     var $hasOne = array(
     );

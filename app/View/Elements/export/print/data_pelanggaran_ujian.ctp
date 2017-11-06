@@ -8,9 +8,12 @@
     <thead>
         <tr>
             <th width="50">No</th>
+            <th><?= __("Tahun Ajaran") ?></th>
+            <th><?= __("Semester") ?></th>
+            <th><?= __("Kategori Ujian") ?></th>
+            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("NPM") ?></th>
             <th><?= __("Nama Mahasiswa") ?></th>
-            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("Pengawas") ?></th>
             <th><?= __("Jenis Pelanggaran") ?></th>
             <th><?= __("Tanggal Ujian") ?></th>
@@ -25,17 +28,19 @@
         if (empty($data['rows'])) {
             ?>
             <tr>
-                <td class = "text-center" colspan ="8">Tidak Ada Data</td>
+                <td class = "text-center" colspan ="11">Tidak Ada Data</td>
             </tr>
             <?php
         } else {
             foreach ($data['rows'] as $item) {
                 ?>
                 <tr>
-                    <td class="text-center"><?= $i ?></td>
+                    <td><?= $item['ExamAcademicYear']['periode'] ?></td>
+                    <td><?= $item['ExamAcademicCategory']['name'] ?></td>
+                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                    <td><?= $item['Course']['full_label'] ?></td>
                     <td><?= $item['Foul']['npm'] ?></td>
                     <td><?= $item['Foul']['name'] ?></td>
-                    <td><?= $item['Course']['name'] ?></td>
                     <td><?= $item['Pengawas']["Biodata"]["full_name"] ?></td>
                     <td><?= $item['FoulType']['name'] ?></td>
                     <td><?= $this->Html->cvtTanggal($item['Foul']['d'], false) ?></td>

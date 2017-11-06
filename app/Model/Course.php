@@ -30,6 +30,10 @@ class Course extends AppModel {
     function deleteData($id = null) {
         return $this->delete($id);
     }
+    
+    function getList(){
+        return $this->find("list",["fields" => ["Course.id", "Course.full_label"],"order"=>"Course.code asc"]);
+    }
 
 }
 

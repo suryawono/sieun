@@ -37,6 +37,10 @@ class ExamAcademicYear extends AppModel {
         return $this->delete($id);
     }
 
+    function getList() {
+        return $this->find("list", ["fields" => ["ExamAcademicYear.id", "ExamAcademicYear.periode"], "order" => "ExamAcademicYear.start_year desc"]);
+    }
+
 }
 
 ?>

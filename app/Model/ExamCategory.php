@@ -34,6 +34,10 @@ class ExamCategory extends AppModel {
     function deleteData($id = null) {
         return $this->delete($id);
     }
+    
+    function getList() {
+        return $this->find("list", ["fields" => ["ExamCategory.id", "ExamCategory.name"], "order" => "ExamCategory.order asc"]);
+    }
 
 }
 

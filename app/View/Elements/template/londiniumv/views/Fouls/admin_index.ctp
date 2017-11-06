@@ -4,8 +4,12 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="block-inner text-danger">
-            <h6 class="heading-hr"><?= __("DATA PELANGGARAN") ?>
+            <h6 class="heading-hr"><?= $pageInfo["titlePage"] ?>
                 <div class="pull-right">
+                    <button class="btn btn-xs btn-default" type="button" onclick="exp('excel', '<?php echo Router::url("index/excel?" . $_SERVER['QUERY_STRING'], true) ?>')">
+                        <i class="icon-file-excel"></i>
+                        Excel
+                    </button>&nbsp;
                     <button class="btn btn-xs btn-default" type="button" onclick="exp('print', '<?php echo Router::url("index/print?" . $_SERVER['QUERY_STRING'], true) ?>')">
                         <i class="icon-print2"></i> 
                         <?= __("Cetak") ?>
@@ -23,14 +27,17 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                         <tr>
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
+                            <th><?= __("Tahun Ajaran") ?></th>
+                            <th><?= __("Semester") ?></th>
+                            <th><?= __("Kategori Ujian") ?></th>
+                            <th><?= __("Mata Kuliah") ?></th>
                             <th><?= __("NPM") ?></th>
                             <th><?= __("Nama Mahasiswa") ?></th>
-                            <th><?= __("Mata Kuliah") ?></th>
                             <th><?= __("Pengawas") ?></th>
                             <th><?= __("Jenis Pelanggaran") ?></th>
                             <th><?= __("Tanggal Ujian") ?></th>
                             <th><?= __("Keterangan") ?></th>
-                            <th width="100"><?= __("Aksi") ?></th>
+                            <th width="50"><?= __("Aksi") ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +48,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                         if (empty($data['rows'])) {
                             ?>
                             <tr>
-                                <td class = "text-center" colspan ="10">Tidak Ada Data</td>
+                                <td class = "text-center" colspan ="13">Tidak Ada Data</td>
                             </tr>
                             <?php
                         } else {
@@ -50,9 +57,12 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                                 <tr id="row-<?= $i ?>" class="removeRow<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>">
                                     <td class="text-center"><input type="checkbox" name="data[<?php echo Inflector::classify($this->params['controller']) ?>][checkbox][]" value="<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>"  id="checkBoxRow" class="styled checkboxDeleteRow" /></td>
                                     <td class="text-center"><?= $i ?></td>
+                                    <td><?= $item['ExamAcademicYear']['periode'] ?></td>
+                                    <td><?= $item['ExamAcademicCategory']['name'] ?></td>
+                                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                                    <td><?= $item['Course']['full_label'] ?></td>
                                     <td><?= $item['Foul']['npm'] ?></td>
                                     <td><?= $item['Foul']['name'] ?></td>
-                                    <td><?= $item['Course']['name'] ?></td>
                                     <td><?= $item['Pengawas']["Biodata"]["full_name"] ?></td>
                                     <td><?= $item['FoulType']['name'] ?></td>
                                     <td><?= $this->Html->cvtTanggal($item['Foul']['d'], false) ?></td>
