@@ -23,12 +23,14 @@ class FoulTypesController extends AppController {
     function _excelData($rows) {
         $titleRow = [
             "No",
+            "Kode",
             "Nama Jenis Pelanggaran",
         ];
         $excelData = [];
         foreach ($rows as $n => $item) {
             $excelData[] = [
                 $n + 1,
+                $item["FoulType"]["code"],
                 $item["FoulType"]["name"],
             ];
         }
@@ -46,17 +48,19 @@ class FoulTypesController extends AppController {
                         if ($i < 4) {
                             continue;
                         }
-                        $foulTypeName = $rowData[1];
-                        if (!empty($foulTypeName)) {
+                        $foulTypeCode = $rowData[1];
+                        $foulTypeName = $rowData[2];
+                        if (!empty($foulTypeCode)) {
                             $tuple = $this->FoulType->find("first", [
                                 "conditions" => [
-                                    "FoulType.name" => $foulTypeName,
+                                    "FoulType.code" => $foulTypeCode,
                                 ],
                                 "recursive" => -1
                             ]);
                             if (empty($tuple)) {
                                 $this->{ Inflector::classify($this->name) }->saveAll([
                                     "FoulType" => [
+                                        "code" => $foulTypeCode,
                                         "name" => $foulTypeName,
                                     ]
                                 ]);
@@ -72,6 +76,7 @@ class FoulTypesController extends AppController {
                         }
                     }
                     $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
+                    $this->redirect(array('action' => 'admin_index'));
                 } else {
                     $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
                 }

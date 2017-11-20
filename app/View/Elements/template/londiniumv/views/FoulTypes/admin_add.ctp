@@ -20,6 +20,14 @@
                                             ?>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <?php
+                                            echo $this->Form->label("FoulType.code", __("Kode Jenis Pelanggaran"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("FoulType.code", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
+                                            ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

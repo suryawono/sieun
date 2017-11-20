@@ -1,8 +1,8 @@
 <?php
 
-class Course extends AppModel {
+class FoulType extends AppModel {
 
-    var $name = 'Course';
+    var $name = 'FoulType';
     var $belongsTo = array(
     );
     var $hasOne = array(
@@ -11,8 +11,7 @@ class Course extends AppModel {
     );
     var $validate = array(
         "name" => [
-            "rule" => "notEmpty",
-            "message" => "Harus Diisi"
+            "Harus diisi" => "notEmpty",
         ],
         "code" => [
             "Harus Diisi" => "notEmpty",
@@ -20,7 +19,7 @@ class Course extends AppModel {
         ],
     );
     var $virtualFields = array(
-        "full_label" => "concat(Course.code,' - ', Course.name)"
+        
     );
 
     function beforeValidate($options = array()) {
@@ -29,10 +28,6 @@ class Course extends AppModel {
 
     function deleteData($id = null) {
         return $this->delete($id);
-    }
-    
-    function getList(){
-        return $this->find("list",["fields" => ["Course.id", "Course.full_label"],"order"=>"Course.code asc"]);
     }
 
 }

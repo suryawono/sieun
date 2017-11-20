@@ -28,6 +28,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul-type");
                         <tr>
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
+                            <th><?= __("Kode") ?></th>
                             <th><?= __("Nama Jenis Pelanggaran") ?></th>
                             <th width="100"><?= __("Aksi") ?></th>
                         </tr>
@@ -49,6 +50,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul-type");
                                 <tr id="row-<?= $i ?>" class="removeRow<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>">
                                     <td class="text-center"><input type="checkbox" name="data[<?php echo Inflector::classify($this->params['controller']) ?>][checkbox][]" value="<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>"  id="checkBoxRow" class="styled checkboxDeleteRow" /></td>
                                     <td class="text-center"><?= $i ?></td>
+                                    <td><?= $item['FoulType']['code'] ?></td>
                                     <td><?= $item['FoulType']['name'] ?></td>
                                     <td class="text-center">
                                         <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/edit", ["editUrl" => Router::url("/admin/{$this->params['controller']}/edit/{$item[Inflector::classify($this->params['controller'])]['id']}")]) ?>

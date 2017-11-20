@@ -61,6 +61,7 @@ class CoursesController extends AppController {
                         }
                     }
                     $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
+                    $this->redirect(array('action' => 'admin_index'));
                 } else {
                     $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
                 }
