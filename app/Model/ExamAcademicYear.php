@@ -24,6 +24,10 @@ class ExamAcademicYear extends AppModel {
             "rule" => "notEmpty",
             "message" => "Harus Diisi"
         ],
+        "code" => [
+            "Harus Diisi" => "notEmpty",
+            "Kode Sudah terdaftar" => "isUnique",
+        ],
     );
     var $virtualFields = array(
         "periode" => "concat(ExamAcademicYear.start_year, '/', ExamAcademicYear.end_year)"

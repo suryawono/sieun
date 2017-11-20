@@ -12,18 +12,26 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamAcademicYear.start_year", __("Start Year"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->label("ExamAcademicYear.code", __("Kode Tahun Ajaran Akademik"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamAcademicYear.code", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", "maxlength" => 4));
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?php
+                                            echo $this->Form->label("ExamAcademicYear.start_year", __("Awal Tahun Ajaran Akademik"), array("class" => "col-md-4 control-label"));
                                             echo $this->Form->input("ExamAcademicYear.start_year", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", 'id' => "startYear", "maxlength" => 4));
                                             ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamAcademicYear.end_year", __("End Year"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->label("ExamAcademicYear.end_year", __("Akhir Tahun Ajaran Akademik"), array("class" => "col-md-4 control-label"));
                                             echo $this->Form->input("ExamAcademicYear.end_year", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", 'readonly', 'id' => "endYear"));
                                             ?>
                                         </div>
@@ -48,8 +56,8 @@
 </div>
 <?php echo $this->Form->end() ?>
 <script>
-    $(document).ready(function() {
-        $("#startYear").on("keyup", function() {
+    $(document).ready(function () {
+        $("#startYear").on("keyup", function () {
             var start_year = parseInt($(this).val());
             var end_year = start_year + 1;
             $("#endYear").val(end_year);
