@@ -16,7 +16,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul-type");
                         <?= __("Cetak") ?>
                     </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
-                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
+                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add",["importable"=>true]) ?>
                 </div>
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
