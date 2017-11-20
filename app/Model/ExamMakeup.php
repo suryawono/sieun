@@ -6,6 +6,9 @@ class ExamMakeup extends AppModel {
     var $belongsTo = array(
         "Course",
         "ExamMakeupStatus",
+        "ExamCategory",
+        "ExamAcademicYear",
+        "ExamAcademicCategory",
     );
     var $hasOne = array(
     );
@@ -21,9 +24,17 @@ class ExamMakeup extends AppModel {
         "name" => [
             "Harus diisi" => "notEmpty",
         ],
+        "exam_academic_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_academic_year_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
     );
     var $virtualFields = array(
-        
     );
 
     function beforeValidate($options = array()) {

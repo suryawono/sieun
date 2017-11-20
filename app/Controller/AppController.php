@@ -174,7 +174,16 @@ class AppController extends Controller {
                 "name",
             ],
             "returnColumn" => "id",
-        ]
+        ],
+        //-status permohonan ujian susulan
+        "exam_makeup_status_id" => [
+            "label" => "Status Permohonan",
+            "modelName" => "ExamMakeupStatus",
+            "searchColumn" => [
+                "name",
+            ],
+            "returnColumn" => "id",
+        ],
     ];
 
     function _sentEmail($type = null, $info = array(), $options = array(), $sent = true) {

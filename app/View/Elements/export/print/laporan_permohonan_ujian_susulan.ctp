@@ -8,11 +8,15 @@
     <thead>
         <tr>
             <th width="50">No</th>
+            <th><?= __("Tahun Ajaran") ?></th>
+            <th><?= __("Semester") ?></th>
+            <th><?= __("Kategori Ujian") ?></th>
+            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("NPM") ?></th>
             <th><?= __("Nama Mahasiswa") ?></th>
-            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("Alasan Tidak Hadir") ?></th>
             <th><?= __("Status") ?></th>
+            <th><?= __("Alasan Disetujui/Ditolak") ?></th>
         </tr>
     </thead>
     <tbody>
@@ -29,11 +33,15 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
+                    <td><?= $item['ExamAcademicYear']['periode'] ?></td>
+                    <td><?= $item['ExamAcademicCategory']['name'] ?></td>
+                    <td><?= $item['ExamCategory']['code'] ?></td>
+                    <td><?= $item['Course']['full_label'] ?></td>
                     <td><?= $item['ExamMakeup']['npm'] ?></td>
                     <td><?= $item['ExamMakeup']['name'] ?></td>
-                    <td><?= $item['Course']['name'] ?></td>
                     <td><?= $item['ExamMakeup']['alasan'] ?></td>
                     <td><?= $item['ExamMakeupStatus']['name'] ?></td>
+                    <td><?= $item['ExamMakeup']['proses_keterangan'] ?></td>
                 </tr>
                 <?php
                 $i++;
