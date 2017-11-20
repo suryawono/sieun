@@ -1,10 +1,10 @@
-<?php echo $this->Form->create("Course", array("type"=>"file","class" => "form-horizontal form-separate", "action" => "import_excel", "id" => "formSubmit", "inputDefaults" => array("error" => array("attributes" => array("wrap" => "label", "class" => "error"))))) ?>
+<?php echo $this->Form->create("FoulType", array("type"=>"file","class" => "form-horizontal form-separate", "action" => "import_excel", "id" => "formSubmit", "inputDefaults" => array("error" => array("attributes" => array("wrap" => "label", "class" => "error"))))) ?>
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="block-inner text-danger">
-                    <h6 class="heading-hr"><?= __("Import Data Mata Kuliah") ?>
+                    <h6 class="heading-hr"><?= __("Import Data Jenis Pelanggaran") ?>
                     </h6>
                 </div>
                 <div class="table-responsive">
@@ -15,8 +15,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("Course.excel", __("File Excel"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("Course.excel", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control","type"=>"file","accept"=>".xls"));
+                                            echo $this->Form->label("FoulType.excel", __("File Excel"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("FoulType.excel", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control","type"=>"file","accept"=>".xls"));
                                             ?>
                                         </div>
                                     </div>

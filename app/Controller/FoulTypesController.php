@@ -35,4 +35,51 @@ class FoulTypesController extends AppController {
         $this->set(compact("titleRow", "excelData"));
     }
 
+    function admin_import_excel() {
+        if ($this->request->is("post")) {
+            $this->{ Inflector::classify($this->name) }->set($this->data);
+            if ($this->{ Inflector::classify($this->name) }->saveAll($this->{ Inflector::classify($this->name) }->data, array('validate' => 'only', "deep" => true))) {
+                $courseExcel = xlsToArray($this->FoulType->data["FoulType"]["excel"]["tmp_name"]);
+                $countNewData = 0;
+                if ($courseExcel != false) {
+                    foreach ($courseExcel as $i => $rowData) {
+                        if ($i < 4) {
+                            continue;
+                        }
+                        $foulTypeName = $rowData[1];
+                        if (!empty($foulTypeName)) {
+                            $tuple = $this->FoulType->find("first", [
+                                "conditions" => [
+                                    "FoulType.name" => $foulTypeName,
+                                ],
+                                "recursive" => -1
+                            ]);
+                            if (empty($tuple)) {
+                                $this->{ Inflector::classify($this->name) }->saveAll([
+                                    "FoulType" => [
+                                        "name" => $foulTypeName,
+                                    ]
+                                ]);
+                                $countNewData++;
+                            } else {
+                                $this->{ Inflector::classify($this->name) }->saveAll([
+                                    "FoulType" => [
+                                        "id" => $tuple["FoulType"]["id"],
+                                        "name" => $foulTypeName,
+                                    ]
+                                ]);
+                            }
+                        }
+                    }
+                    $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
+                } else {
+                    $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
+                }
+            } else {
+                $this->validationErrors = $this->{ Inflector::classify($this->name) }->validationErrors;
+                $this->Session->setFlash(__("Harap mengecek kembali kesalahan dibawah."), 'default', array(), 'danger');
+            }
+        }
+    }
+
 }
