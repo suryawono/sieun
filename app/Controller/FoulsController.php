@@ -52,7 +52,8 @@ class FoulsController extends AppController {
                 $dataExcel = xlsToArray($this->Foul->data["Foul"]["excel"]["tmp_name"]);
                 $countNewData = 0;
                 $countFailData = 0;
-                $countData=0;
+                $countUpdate = 0;
+                $countData = 0;
                 $failDataLabel = "";
                 if ($dataExcel != false) {
                     foreach ($dataExcel as $i => $rowData) {
@@ -126,24 +127,28 @@ class FoulsController extends AppController {
                                     "Foul" => am([
                                         "npm" => $npm,
                                         "d" => $tanggalUjian,
+                                        "name" => $namaMahasiswa,
+                                        "keterangan" => $keterangan,
                                             ], $foundDynamicIds),
                                 ]);
                                 $countNewData++;
                             } else {
+                                $countUpdate++;
                                 $this->{ Inflector::classify($this->name) }->saveAll([
                                     "Foul" => [
                                         "id" => $tuple["Foul"]["id"],
                                         "d" => $tanggalUjian,
+                                        "name" => $namaMahasiswa,
                                         "keterangan" => $keterangan,
                                     ]
                                 ]);
                             }
                         }
                     }
-                    if ($countFailData == 0) {
-                        $this->Session->setFlash(__("Data berhasil diperbaharui/disimpan. $countData data unggah. $countNewData data baru ditambahkan."), 'default', array(), 'success');
+                    if ($countFailData == 0 && $countUpdate == 0) {
+                        $this->Session->setFlash(__("Data berhasil diperbaharui/disimpan. $countNewData data baru ditambahkan."), 'default', array(), 'success');
                     } else {
-                        $this->Session->setFlash(__("Sebagian data berhasil diperbaharui/disimpan. $countData data unggah. $countNewData data baru ditambahkan. $countFailData data yang gagal ditambahkan.<br/>" . $failDataLabel), 'default', array(), 'warning');
+                        $this->Session->setFlash(__("Sebagian data berhasil diperbaharui/disimpan. $countData data diunggah. $countNewData data baru ditambahkan. $countUpdate data diperbaharui. $countFailData data yang gagal ditambahkan.<br/>" . $failDataLabel), 'default', array(), 'warning');
                     }
                     $this->redirect(array('action' => 'admin_index'));
                 } else {
