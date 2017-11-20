@@ -8,8 +8,11 @@
     <thead>
         <tr>
             <th width="50">No</th>
-            <th><?= __("Pengawas") ?></th>
+            <th><?= __("Tahun Ajaran") ?></th>
+            <th><?= __("Semester") ?></th>
+            <th><?= __("Kategori Ujian") ?></th>
             <th><?= __("Mata Kuliah") ?></th>
+            <th><?= __("Pengawas") ?></th>
             <th><?= __("Tanggal Ujian") ?></th>
             <th><?= __("Keterangan") ?></th>
         </tr>
@@ -22,7 +25,7 @@
         if (empty($data['rows'])) {
             ?>
             <tr>
-                <td class = "text-center" colspan ="5">Tidak Ada Data</td>
+                <td class = "text-center" colspan ="8">Tidak Ada Data</td>
             </tr>
             <?php
         } else {
@@ -30,8 +33,11 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
+                    <td><?= $item['ExamAcademicYear']['periode'] ?></td>
+                    <td><?= $item['ExamAcademicCategory']['name'] ?></td>
+                    <td><?= $item['ExamCategory']['code'] ?></td>
+                    <td><?= $item['Course']['full_label'] ?></td>
                     <td><?= $item['Pengawas']["Biodata"]["full_name"] ?></td>
-                    <td><?= $item['Course']['name'] ?></td>
                     <td><?= $this->Html->cvtTanggal($item['NoteExam']['d'], false) ?></td>
                     <td><?= $item['NoteExam']['keterangan'] ?></td>
                 </tr>

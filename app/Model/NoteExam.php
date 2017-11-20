@@ -9,6 +9,9 @@ class NoteExam extends AppModel {
             "className" => "Account",
             "foreignKey" => "pengawas_id",
         ],
+        "ExamCategory",
+        "ExamAcademicYear",
+        "ExamAcademicCategory",
     );
     var $hasOne = array(
     );
@@ -21,9 +24,17 @@ class NoteExam extends AppModel {
         "pengawas_id" => [
             "Harus dipilih" => "notEmpty",
         ],
+        "exam_academic_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_academic_year_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
     );
     var $virtualFields = array(
-        
     );
 
     function beforeValidate($options = array()) {

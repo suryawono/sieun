@@ -37,6 +37,15 @@ class Foul extends AppModel {
         "d" => [
             "Harus diisi" => "notEmpty",
         ],
+        "exam_academic_category_id"=>[
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_academic_year_id"=>[
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_category_id"=>[
+            "Harus dipilih" => "notEmpty",
+        ],
     );
     var $virtualFields = array(
         
