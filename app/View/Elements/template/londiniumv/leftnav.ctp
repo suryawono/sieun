@@ -25,7 +25,7 @@
 </div>
 <ul class="navigation">
     <li class="<?= $url == "admin/dashboard" ? "active" : "" ?>"><a href="<?= Router::url("/admin/dashboard", true) ?>"><span>Dashboard</span> <i class="icon-screen2"></i></a></li>
-    <li class="<?= $url == "admin/employees/profil" ? "active" : "" ?>"><a href="<?= Router::url("/admin/employees/profil", true) ?>"><span>Profil Anda</span> <i class="icon-user"></i></a></li>
+    <!--<li class="<?= $url == "admin/employees/profil" ? "active" : "" ?>"><a href="<?= Router::url("/admin/employees/profil", true) ?>"><span>Profil Anda</span> <i class="icon-user"></i></a></li>-->
     <?php
 
     function leftSubMenu($menu, $urls) {
