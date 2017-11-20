@@ -15,7 +15,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-category"
                         <?= __("Cetak") ?>
                     </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
-                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
+                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add", ["importable" => true]) ?>
                 </div>
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
@@ -27,6 +27,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-category"
                         <tr>
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
+                            <th><?= __("Kode") ?></th>
                             <th><?= __("Nama Semester") ?></th>
                             <th width="50"><?= __("Order") ?></th>
                             <th width="50"><?= __("Aksi") ?></th>
@@ -40,7 +41,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-category"
                         if (empty($data['rows'])) {
                             ?>
                             <tr>
-                                <td class = "text-center" colspan ="5">Tidak Ada Data</td>
+                                <td class = "text-center" colspan ="6">Tidak Ada Data</td>
                             </tr>
                             <?php
                         } else {
@@ -49,6 +50,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-academic-category"
                                 <tr id="row-<?= $i ?>" class="removeRow<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>">
                                     <td class="text-center"><input type="checkbox" name="data[<?php echo Inflector::classify($this->params['controller']) ?>][checkbox][]" value="<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>"  id="checkBoxRow" class="styled checkboxDeleteRow" /></td>
                                     <td class="text-center"><?= $i ?></td>
+                                    <td><?= $item['ExamAcademicCategory']['code'] ?></td>
                                     <td><?= $item['ExamAcademicCategory']['name'] ?></td>
                                     <td><?= $item['ExamAcademicCategory']['order'] ?></td>
                                     <td class="text-center">

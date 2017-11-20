@@ -12,7 +12,15 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?php
+                                            echo $this->Form->label("ExamAcademicCategory.code", __("Kode Kategori Semester"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamAcademicCategory.code", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
                                             echo $this->Form->label("ExamAcademicCategory.name", __("Nama Kategori Semester"), array("class" => "col-md-4 control-label"));
@@ -20,7 +28,7 @@
                                             ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
                                             echo $this->Form->label("ExamAcademicCategory.order", __("Order"), array("class" => "col-md-4 control-label"));

@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th width="50">No</th>
+            <th><?= __("Kode") ?></th>
             <th><?= __("Tahun Ajaran") ?></th>
         </tr>
     </thead>
@@ -17,7 +18,7 @@
         if (empty($data['rows'])) {
             ?>
             <tr>
-                <td class = "text-center" colspan ="2">Tidak Ada Data</td>
+                <td class = "text-center" colspan ="3">Tidak Ada Data</td>
             </tr>
             <?php
         } else {
@@ -25,6 +26,7 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
+                    <td class="text-center"><?= $item['ExamAcademicYear']['code'] ?></td>
                     <td class="text-center"><?= $item['ExamAcademicYear']['periode'] ?></td>
                 </tr>
                 <?php

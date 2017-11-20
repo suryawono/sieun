@@ -18,9 +18,12 @@ class ExamAcademicCategory extends AppModel {
             "rule" => "notEmpty",
             "message" => "Harus Diisi"
         ],
+        "code" => [
+            "Harus Diisi" => "notEmpty",
+            "Kode Sudah terdaftar" => "isUnique",
+        ],
     );
     var $virtualFields = array(
-        
     );
 
     function beforeValidate($options = array()) {
@@ -30,7 +33,7 @@ class ExamAcademicCategory extends AppModel {
     function deleteData($id = null) {
         return $this->delete($id);
     }
-    
+
     function getList() {
         return $this->find("list", ["fields" => ["ExamAcademicCategory.id", "ExamAcademicCategory.name"], "order" => "ExamAcademicCategory.order asc"]);
     }

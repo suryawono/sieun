@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th width="50">No</th>
+            <th><?= __("Kode") ?></th>
             <th><?= __("Nama Semester") ?></th>
             <th width="50"><?= __("Order") ?></th>
         </tr>
@@ -26,6 +27,7 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
+                    <td><?= $item['ExamAcademicCategory']['code'] ?></td>
                     <td><?= $item['ExamAcademicCategory']['name'] ?></td>
                     <td><?= $item['ExamAcademicCategory']['order'] ?></td>
                 </tr>

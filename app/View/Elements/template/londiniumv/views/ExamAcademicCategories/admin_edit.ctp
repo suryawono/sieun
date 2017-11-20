@@ -1,4 +1,4 @@
-<?php echo $this->Form->create("ExamAcademicAbsent", array("class" => "form-horizontal form-separate", "action" => "edit", "id" => "formSubmit", "inputDefaults" => array("error" => array("attributes" => array("wrap" => "label", "class" => "error"))))) ?>
+<?php echo $this->Form->create("ExamAcademicCategory", array("class" => "form-horizontal form-separate", "action" => "edit", "id" => "formSubmit", "inputDefaults" => array("error" => array("attributes" => array("wrap" => "label", "class" => "error"))))) ?>
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="panel panel-default">
@@ -12,19 +12,27 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamAcademicAbsent.name", __("Nama Kategori Semester"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("ExamAcademicAbsent.name", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
+                                            echo $this->Form->label("ExamAcademicCategory.code", __("Kode Kategori Semester"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamAcademicCategory.code", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
                                             ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamAcademicAbsent.order", __("Order"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("ExamAcademicAbsent.order", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
+                                            echo $this->Form->label("ExamAcademicCategory.name", __("Nama Kategori Semester"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamAcademicCategory.name", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?php
+                                            echo $this->Form->label("ExamAcademicCategory.order", __("Order"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamAcademicCategory.order", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control"));
                                             ?>
                                         </div>
                                     </div>
