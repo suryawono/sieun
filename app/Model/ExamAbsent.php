@@ -13,6 +13,9 @@ class ExamAbsent extends AppModel {
             "className" => "Account",
             "foreignKey" => "pengawas2_id",
         ],
+        "ExamCategory",
+        "ExamAcademicYear",
+        "ExamAcademicCategory",
     );
     var $hasOne = array(
     );
@@ -25,9 +28,17 @@ class ExamAbsent extends AppModel {
         "pengawas_id" => [
             "Harus dipilih" => "notEmpty",
         ],
+        "exam_academic_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_academic_year_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
+        "exam_category_id" => [
+            "Harus dipilih" => "notEmpty",
+        ],
     );
     var $virtualFields = array(
-        
     );
 
     function beforeValidate($options = array()) {

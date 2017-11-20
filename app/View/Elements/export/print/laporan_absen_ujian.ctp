@@ -8,10 +8,13 @@
     <thead>
         <tr>
             <th width="50">No</th>
+            <th><?= __("Tahun Ajaran") ?></th>
+            <th><?= __("Semester") ?></th>
+            <th><?= __("Kategori Ujian") ?></th>
+            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("NPM") ?></th>
             <th><?= __("Nama") ?></th>
             <th><?= __("Pengawas") ?></th>
-            <th><?= __("Mata Kuliah") ?></th>
             <th><?= __("Tanggal Ujian") ?></th>
             <th><?= __("Keterangan") ?></th>
         </tr>
@@ -24,7 +27,7 @@
         if (empty($data['rows'])) {
             ?>
             <tr>
-                <td class = "text-center" colspan ="7">Tidak Ada Data</td>
+                <td class = "text-center" colspan ="10">Tidak Ada Data</td>
             </tr>
             <?php
         } else {
@@ -32,10 +35,13 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
+                    <td><?= $item['ExamAcademicYear']['periode'] ?></td>
+                    <td><?= $item['ExamAcademicCategory']['name'] ?></td>
+                    <td><?= $item['ExamCategory']['code'] ?></td>
+                    <td><?= $item['Course']['full_label'] ?></td>
                     <td><?= $item['ExamAbsent']['npm'] ?></td>
                     <td><?= $item['ExamAbsent']['name'] ?></td>
-                    <td><?= trim($item['Pengawas']["Biodata"]["full_name"] . "," . @$item['Pengawas2']["Biodata"]["full_name"], ",") ?></td>
-                    <td><?= $item['Course']['name'] ?></td>
+                    <td><?= $item['Pengawas']["Biodata"]["full_name"] ?></td>
                     <td><?= $this->Html->cvtTanggal($item['ExamAbsent']['d'], false) ?></td>
                     <td><?= $item['ExamAbsent']['keterangan'] ?></td>
                 </tr>
