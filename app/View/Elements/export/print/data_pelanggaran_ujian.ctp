@@ -35,6 +35,7 @@
             foreach ($data['rows'] as $item) {
                 ?>
                 <tr>
+                    <td><?= $i ?></td>
                     <td><?= $item['ExamAcademicYear']['periode'] ?></td>
                     <td><?= $item['ExamAcademicCategory']['name'] ?></td>
                     <td><?= $item['ExamCategory']['code'] ?></td>

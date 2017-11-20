@@ -549,5 +549,5 @@ class AccountsController extends AppController {
         }
         $this->layout = _TEMPLATE_DIR . "/{$this->template}/login";
     }
-
+    
 }

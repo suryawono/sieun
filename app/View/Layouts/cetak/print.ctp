@@ -34,6 +34,8 @@ echo $this->Html->script('jquery.min');
     }
     table {
         border-collapse: collapse;
+        font-size:11px !important; 
+        font-family:Tahoma, Geneva, sans-serif;
     }
     table, th, td {
         border: 1px solid black;
