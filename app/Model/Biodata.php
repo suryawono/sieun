@@ -7,6 +7,10 @@ class Biodata extends AppModel {
             'rule' => 'notEmpty',
             'message' => 'Harus diisi'
         ),
+        'identity_number' => array(
+            "Harus Diisi" => "notEmpty",
+            "Kode Sudah terdaftar" => "isUnique",
+        ),
     );
     public $belongsTo = array(
         'State',
@@ -20,7 +24,7 @@ class Biodata extends AppModel {
     public $hasOne = array(
     );
     public $virtualFields = array(
-        "full_name" => "trim(Trailing ',' from concat(gelar_depan,' ',first_name,' ',last_name,',',gelar_belakang))",
+        "full_name" => "trim(Trailing ',' from concat(identity_number,' - ',first_name,' ',last_name))",
     );
 
 }

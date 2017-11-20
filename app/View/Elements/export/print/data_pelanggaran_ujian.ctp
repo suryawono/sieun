@@ -37,7 +37,7 @@
                 <tr>
                     <td><?= $item['ExamAcademicYear']['periode'] ?></td>
                     <td><?= $item['ExamAcademicCategory']['name'] ?></td>
-                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                    <td><?= $item['ExamCategory']['code'] ?></td>
                     <td><?= $item['Course']['full_label'] ?></td>
                     <td><?= $item['Foul']['npm'] ?></td>
                     <td><?= $item['Foul']['name'] ?></td>

@@ -116,6 +116,66 @@ class AppController extends Controller {
     var $cetak_template = false;
     var $order = false;
     var $layoutCetak = false;
+    var $dynamicIdIdentifier = [
+        //-semester
+        "exam_academic_category_id" => [
+            "label" => "Kategori Ujian",
+            "modelName" => "ExamAcademicCategory",
+            "searchColumn" => [
+                "code",
+                "name",
+            ],
+            "returnColumn" => "id",
+        ],
+        //-tahun ajaran
+        "exam_academic_year_id" => [
+            "label" => "Tahun Ajaran Akademik",
+            "modelName" => "ExamAcademicYear",
+            "searchColumn" => [
+                "code",
+                "start_year",
+            ],
+            "returnColumn" => "id",
+        ],
+        //-kategori ujian
+        "exam_category_id" => [
+            "label" => "Kategori Ujian",
+            "modelName" => "ExamCategory",
+            "searchColumn" => [
+                "code",
+                "name",
+            ],
+            "returnColumn" => "id",
+        ],
+        //-pengawas
+        "pengawas_id" => [
+            "label" => "Pengawas",
+            "modelName" => "Biodata",
+            "searchColumn" => [
+                "identity_number",
+            ],
+            "returnColumn" => "account_id",
+        ],
+        //-mata kuliah
+        "course_id" => [
+            "label" => "Mata Kuliah",
+            "modelName" => "Course",
+            "searchColumn" => [
+                "code",
+            ],
+            "returnColumn" => "id",
+        ],
+        //-jenis pelanggaran
+        "foul_type_id" => [
+            "label" => "Jenis Pelanggaran",
+            "modelName" => "FoulType",
+            "searchColumn" => [
+                "code",
+                "name",
+            ],
+            "returnColumn" => "id",
+        ]
+    ];
 
     function _sentEmail($type = null, $info = array(), $options = array(), $sent = true) {
         App::uses('CakeEmail', 'Network/Email');
@@ -597,10 +657,10 @@ class AppController extends Controller {
         $this->set(compact('data'));
     }
 
-    function _excelData($rows){
+    function _excelData($rows) {
         
     }
-    
+
     function admin_add() {
         if ($this->request->is("post")) {
             $this->{ Inflector::classify($this->name) }->set($this->data);
@@ -824,6 +884,38 @@ class AppController extends Controller {
                 "delete" => true,
             ]);
         }
+    }
+
+    function _searchRequiredDynamicId($requiredDynamicIds, &$result) {
+        $searchFlag = [
+            "allFound" => true,
+            "warningLabel" => "",
+        ];
+        foreach ($requiredDynamicIds as $columnName => $value) {
+            if (isset($this->dynamicIdIdentifier[$columnName])) {
+                $modelName = $this->dynamicIdIdentifier[$columnName]["modelName"];
+                $conds = [
+                    "OR" => [],
+                ];
+                foreach ($this->dynamicIdIdentifier[$columnName]["searchColumn"] as $column) {
+                    $conds["OR"]["$modelName.$column"] = $value;
+                }
+                $tuple = ClassRegistry::init($modelName)->find("first", [
+                    "conditions" => $conds,
+                    "recursive" => -1,
+                ]);
+                if (!empty($tuple)) {
+                    $result[$columnName] = $tuple[$modelName][$this->dynamicIdIdentifier[$columnName]["returnColumn"]];
+                } else {
+                    $searchFlag["allFound"] = false;
+                    $searchFlag["warningLabel"] .= " | " . $this->dynamicIdIdentifier[$columnName]["label"] . " tidak ditemukan";
+                }
+            } else {
+                die("$columnName identifier not found!");
+            }
+        }
+        $searchFlag["warningLabel"] = trim($searchFlag["warningLabel"], " | ");
+        return $searchFlag;
     }
 
 }

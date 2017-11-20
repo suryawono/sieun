@@ -51,11 +51,15 @@ class FoulsController extends AppController {
 
                 $dataExcel = xlsToArray($this->Foul->data["Foul"]["excel"]["tmp_name"]);
                 $countNewData = 0;
+                $countFailData = 0;
+                $countData=0;
+                $failDataLabel = "";
                 if ($dataExcel != false) {
                     foreach ($dataExcel as $i => $rowData) {
                         if ($i < 4) {
                             continue;
                         }
+                        $countData++;
                         $tahunAjaran = $rowData[1];
                         $semester = $rowData[2];
                         $kategoriUjian = $rowData[3];
@@ -64,34 +68,84 @@ class FoulsController extends AppController {
                         $namaMahasiswa = $rowData[6];
                         $pengawas = $rowData[7];
                         $jenisPelanggaran = $rowData[8];
-                        $tanggalUjian = $rowData[9];
+                        $tanggalUjian = date("Y-m-d", strtotime($rowData[9]));
                         $keterangan = $rowData[10];
-                        if (!empty($courseCode)) {
+
+                        $pengawasUIDs = explode("-", $pengawas);
+                        if (!empty($pengawasUIDs)) {
+                            $pengawasUID = trim($pengawasUIDs[0]);
+                        } else {
+                            $pengawasUID = $pengawas;
+                        }
+
+                        $courseUIDs = explode("-", $mataKuliah);
+                        if (!empty($courseUIDs)) {
+                            $courseUID = trim($courseUIDs[0]);
+                        } else {
+                            $courseUID = $mataKuliah;
+                        }
+
+                        $tahunAjaranUIDs = explode("/", $tahunAjaran);
+                        if (count($tahunAjaranUIDs) >= 1) {
+                            $tahunAjaranUID = $tahunAjaranUIDs[0];
+                        } else {
+                            $tahunAjaranUID = $tahunAjaran;
+                        }
+                        //start of lookup id for dynamic data
+
+                        $requiredDynamicIds = [
+                            "foul_type_id" => $jenisPelanggaran,
+                            "course_id" => $courseUID,
+                            "pengawas_id" => $pengawasUID,
+                            "exam_category_id" => $kategoriUjian,
+                            "exam_academic_year_id" => $tahunAjaranUID,
+                            "exam_academic_category_id" => $semester,
+                        ];
+
+                        $foundDynamicIds = [];
+
+                        $searchRequiredDynamicIds = $this->_searchRequiredDynamicId($requiredDynamicIds, $foundDynamicIds);
+                        if (!$searchRequiredDynamicIds["allFound"]) {
+                            $countFailData++;
+                            $failDataLabel .= "- Data no {$rowData[0]} error. " . $searchRequiredDynamicIds["warningLabel"] . "<br/>";
+                            continue;
+                        }
+                        //*jenis pelanggaran
+                        //end of lookup id
+
+                        if (!empty($foundDynamicIds)) {
                             $tuple = $this->Foul->find("first", [
                                 "conditions" => [
-                                    "Course.code" => $courseCode,
+                                    $foundDynamicIds,
+                                    "Foul.npm" => $npm,
                                 ],
                                 "recursive" => -1
                             ]);
                             if (empty($tuple)) {
                                 $this->{ Inflector::classify($this->name) }->saveAll([
-                                    "Course" => [
-                                        "code" => $courseCode,
-                                        "name" => $courseName,
-                                    ]
+                                    "Foul" => am([
+                                        "npm" => $npm,
+                                        "d" => $tanggalUjian,
+                                            ], $foundDynamicIds),
                                 ]);
                                 $countNewData++;
                             } else {
                                 $this->{ Inflector::classify($this->name) }->saveAll([
-                                    "Course" => [
-                                        "id" => $tuple["Course"]["id"],
-                                        "name" => $courseName,
+                                    "Foul" => [
+                                        "id" => $tuple["Foul"]["id"],
+                                        "d" => $tanggalUjian,
+                                        "keterangan" => $keterangan,
                                     ]
                                 ]);
                             }
                         }
                     }
-                    $this->Session->setFlash(__("Data berhasil diperbaharui. $countNewData data baru ditambahkan"), 'default', array(), 'success');
+                    if ($countFailData == 0) {
+                        $this->Session->setFlash(__("Data berhasil diperbaharui/disimpan. $countData data unggah. $countNewData data baru ditambahkan."), 'default', array(), 'success');
+                    } else {
+                        $this->Session->setFlash(__("Sebagian data berhasil diperbaharui/disimpan. $countData data unggah. $countNewData data baru ditambahkan. $countFailData data yang gagal ditambahkan.<br/>" . $failDataLabel), 'default', array(), 'warning');
+                    }
+                    $this->redirect(array('action' => 'admin_index'));
                 } else {
                     $this->Session->setFlash(__("Terjadi kesalahan dalam membaca file."), 'default', array(), 'danger');
                 }
@@ -122,7 +176,7 @@ class FoulsController extends AppController {
                 $n + 1,
                 $item["ExamAcademicYear"]["periode"],
                 $item["ExamAcademicCategory"]["name"],
-                $item["ExamCategory"]["uniq_name"],
+                $item["ExamCategory"]["code"],
                 $item["Course"]["full_label"],
                 $item["Foul"]["npm"],
                 $item["Foul"]["name"],

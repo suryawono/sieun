@@ -6,10 +6,6 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
         <div class="block-inner text-danger">
             <h6 class="heading-hr"><?= $pageInfo["titlePage"] ?>
                 <div class="pull-right">
-                    <button class="btn btn-xs btn-default" type="button" onclick="exp('etc', '<?php echo Router::url("import_excel", true) ?>')">
-                        <i class="icon-upload"></i>
-                        <?= __("Import Data") ?>
-                    </button>&nbsp;
                     <button class="btn btn-xs btn-default" type="button" onclick="exp('excel', '<?php echo Router::url("index/excel?" . $_SERVER['QUERY_STRING'], true) ?>')">
                         <i class="icon-file-excel"></i>
                         Excel
@@ -19,7 +15,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                         <?= __("Cetak") ?>
                     </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
-                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
+                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add",["importable"=>true]) ?>
                 </div>
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
@@ -63,7 +59,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul");
                                     <td class="text-center"><?= $i ?></td>
                                     <td><?= $item['ExamAcademicYear']['periode'] ?></td>
                                     <td><?= $item['ExamAcademicCategory']['name'] ?></td>
-                                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                                    <td><?= $item['ExamCategory']['code'] ?></td>
                                     <td><?= $item['Course']['full_label'] ?></td>
                                     <td><?= $item['Foul']['npm'] ?></td>
                                     <td><?= $item['Foul']['name'] ?></td>
