@@ -8,8 +8,8 @@
     <thead>
         <tr>
             <th width="50">No</th>
-            <th><?= __("Unique Name") ?></th>
-            <th><?= __("Name") ?></th>
+            <th><?= __("Kode") ?></th>
+            <th><?= __("Nama") ?></th>
             <th width="50"><?= __("Order") ?></th>
         </tr>
     </thead>
@@ -27,7 +27,7 @@
                 ?>
                 <tr>
                     <td class="text-center"><?= $i ?></td>
-                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                    <td><?= $item['ExamCategory']['code'] ?></td>
                     <td><?= $item['ExamCategory']['name'] ?></td>
                     <td><?= $item['ExamCategory']['order'] ?></td>
                 </tr>

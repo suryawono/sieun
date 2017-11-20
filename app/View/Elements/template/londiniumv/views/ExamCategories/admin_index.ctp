@@ -15,7 +15,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-category");
                         <?= __("Cetak") ?>
                     </button>&nbsp;
                     <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/delete") ?>
-                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add") ?>
+                    <?= $this->element(_TEMPLATE_DIR . "/{$template}/roleaccess/add", ["importable" => true]) ?>
                 </div>
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
@@ -27,8 +27,8 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-category");
                         <tr>
                             <th width="50"><input type="checkbox" class="styled checkall"/></th>
                             <th width="50">No</th>
-                            <th><?= __("Unique Name") ?></th>
-                            <th><?= __("Name") ?></th>
+                            <th><?= __("Kode") ?></th>
+                            <th><?= __("Nama") ?></th>
                             <th width="50"><?= __("Order") ?></th>
                             <th width="50"><?= __("Aksi") ?></th>
                         </tr>
@@ -50,7 +50,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/exam-category");
                                 <tr id="row-<?= $i ?>" class="removeRow<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>">
                                     <td class="text-center"><input type="checkbox" name="data[<?php echo Inflector::classify($this->params['controller']) ?>][checkbox][]" value="<?php echo $item[Inflector::classify($this->params['controller'])]['id']; ?>"  id="checkBoxRow" class="styled checkboxDeleteRow" /></td>
                                     <td class="text-center"><?= $i ?></td>
-                                    <td><?= $item['ExamCategory']['uniq_name'] ?></td>
+                                    <td><?= $item['ExamCategory']['code'] ?></td>
                                     <td><?= $item['ExamCategory']['name'] ?></td>
                                     <td><?= $item['ExamCategory']['order'] ?></td>
                                     <td class="text-center">

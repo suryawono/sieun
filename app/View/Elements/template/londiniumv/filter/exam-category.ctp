@@ -8,8 +8,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label><?= __("Unique") ?></label>
-                        <?= $this->Form->input(null, array("default" => isset($this->request->query['ExamCategory_uniq_name']) ? $this->request->query['ExamCategory_uniq_name'] : '', "name" => "ExamCategory.uniq_name", "div" => false, "label" => false, "class" => "form-control tip")) ?>
+                        <label><?= __("Kode") ?></label>
+                        <?= $this->Form->input(null, array("default" => isset($this->request->query['ExamCategory_code']) ? $this->request->query['ExamCategory_code'] : '', "name" => "ExamCategory.code", "div" => false, "label" => false, "class" => "form-control tip")) ?>
                     </div>
                     <div class="col-md-6">
                         <label><?= __("Nama") ?></label>

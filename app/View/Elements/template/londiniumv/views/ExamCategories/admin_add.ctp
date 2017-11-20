@@ -15,8 +15,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php
-                                            echo $this->Form->label("ExamCategory.uniq_name", __("Unique"), array("class" => "col-md-4 control-label"));
-                                            echo $this->Form->input("ExamCategory.uniq_name", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", 'maxlength' => 3));
+                                            echo $this->Form->label("ExamCategory.code", __("Kode"), array("class" => "col-md-4 control-label"));
+                                            echo $this->Form->input("ExamCategory.code", array("div" => array("class" => "col-md-8"), "label" => false, "class" => "form-control", 'maxlength' => 3));
                                             ?>
                                         </div>
                                     </div>
