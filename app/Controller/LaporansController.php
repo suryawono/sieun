@@ -92,6 +92,7 @@ class LaporansController extends AppController {
             $result[$item["Foul"]["foul_type_id"]][$item["Foul"]["exam_academic_year_id"]] = $item[0]["JumlahPelanggaran"];
         }
         $buildGraph = [];
+        $k=1;
         foreach ($result as $foul_type_id => $d) {
             $n = new stdClass();
             $n->label = $foulTypes[$foul_type_id];
@@ -100,6 +101,11 @@ class LaporansController extends AppController {
             foreach ($d as $exam_academic_year_id => $v) {
                 $n->data[] = [$i++, intval($v)];
             }
+            $bars=new stdClass();
+            $bars->show=true;
+            $bars->barWidth=0.2;
+            $bars->order=$k++;
+            $n->bars=$bars;
             $buildGraph[] = $n;
         }
         $xaxis = [];
@@ -162,6 +168,89 @@ class LaporansController extends AppController {
             }
         }
         $this->set(compact("result", "examAcademicYears", "buildGraph", "xaxis"));
+    }
+
+    function admin_exam_makeups_yoy() {
+        $examMakeupsYoY = ClassRegistry::init("ExamMakeup")->find("all", [
+            "recursive" => -1,
+            "fields" => "count(ExamMakeup.id) JumlahPermohonan,ExamMakeup.exam_academic_year_id,ExamMakeup.exam_makeup_status_id",
+            "group" => "ExamMakeup.exam_academic_year_id,ExamMakeup.exam_makeup_status_id",
+        ]);
+        $jumlahPermohonanYoY = ClassRegistry::init("ExamMakeup")->find("all", [
+            "recursive" => -1,
+            "fields" => "count(ExamMakeup.id) JumlahPermohonan,ExamMakeup.exam_academic_year_id",
+            "group" => "ExamMakeup.exam_academic_year_id",
+        ]);
+        $currentYear = date("Y");
+        $result = [];
+        $examMakeupStatuses = ClassRegistry::init("ExamMakeupStatus")->find("list", ["fields" => ["ExamMakeupStatus.id", "ExamMakeupStatus.name"]]);
+        $examAcademicYears = ClassRegistry::init("ExamAcademicYear")->getList();
+        
+
+        for ($shiftYear = $currentYear - 10; $shiftYear <= $currentYear; $shiftYear++) {
+            $examAcademicYear = ClassRegistry::init("ExamAcademicYear")->find("first", [
+                "conditions" => [
+                    "ExamAcademicYear.start_year" => $shiftYear,
+                ],
+            ]);
+            if (!empty($examAcademicYear)) {
+                $result[-1][$examAcademicYear["ExamAcademicYear"]["id"]] = 0;
+            }
+        }
+        foreach ($examMakeupStatuses as $k => $v) {
+            $result[$k] = [];
+            for ($shiftYear = $currentYear - 10; $shiftYear <= $currentYear; $shiftYear++) {
+                $examAcademicYear = ClassRegistry::init("ExamAcademicYear")->find("first", [
+                    "conditions" => [
+                        "ExamAcademicYear.start_year" => $shiftYear,
+                    ],
+                ]);
+                if (!empty($examAcademicYear)) {
+                    $result[$k][$examAcademicYear["ExamAcademicYear"]["id"]] = 0;
+                }
+            }
+        }
+        
+        foreach ($examMakeupsYoY as $item) {
+            $result[$item["ExamMakeup"]["exam_makeup_status_id"]][$item["ExamMakeup"]["exam_academic_year_id"]] = $item[0]["JumlahPermohonan"];
+        }
+        foreach ($jumlahPermohonanYoY as $item) {
+            $result[-1][$item["ExamMakeup"]["exam_academic_year_id"]] = $item[0]["JumlahPermohonan"];
+        }
+        $buildGraph = [];
+        $k=1;
+        foreach ($result as $exam_makeup_status_id => $d) {
+            $n = new stdClass();
+            if ($exam_makeup_status_id == -1) {
+                $n->label="Jumlah Permohonan";
+            } else {
+                $n->label = $examMakeupStatuses[$exam_makeup_status_id];
+            }
+            $n->data = [];
+            $i = 1;
+            foreach ($d as $exam_academic_year_id => $v) {
+                $n->data[] = [$i++, intval($v)];
+            }
+            $bars=new stdClass();
+            $bars->show=true;
+            $bars->barWidth=0.2;
+            $bars->order=$k++;
+            $n->bars=$bars;
+            $buildGraph[] = $n;
+        }
+        $xaxis = [];
+        $i = 1;
+        for ($shiftYear = $currentYear - 10; $shiftYear <= $currentYear; $shiftYear++) {
+            $examAcademicYear = ClassRegistry::init("ExamAcademicYear")->find("first", [
+                "conditions" => [
+                    "ExamAcademicYear.start_year" => $shiftYear,
+                ],
+            ]);
+            if (!empty($examAcademicYear)) {
+                $xaxis[] = [$i++, $examAcademicYear["ExamAcademicYear"]["periode"]];
+            }
+        }
+        $this->set(compact("result", "examMakeupStatuses", "examAcademicYears", "buildGraph", "xaxis"));
     }
 
 }

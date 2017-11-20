@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="block-inner text-danger">
-            <h6 class="heading-hr">Grafik Pelanggaran Ujian Per Tahun
+            <h6 class="heading-hr">Grafik Permohonan Ujian Susulan Per Tahun
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
         </div>

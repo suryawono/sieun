@@ -23,7 +23,7 @@
                         points: {show: true}
                     },
                     grid: {hoverable: true, clickable: true},
-                    yaxis: {min: 0, font: {size: 11, lineHeight: 1, color: "#333333"}},
+                    yaxis: {min: 0,tick:1, font: {size: 11, lineHeight: 1, color: "#333333"}},
                     xaxis: {ticks:xaxis},
                 });
 
