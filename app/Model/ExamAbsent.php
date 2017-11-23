@@ -9,10 +9,6 @@ class ExamAbsent extends AppModel {
             "className" => "Account",
             "foreignKey" => "pengawas_id",
         ],
-        "Pengawas2" => [
-            "className" => "Account",
-            "foreignKey" => "pengawas2_id",
-        ],
         "ExamCategory",
         "ExamAcademicYear",
         "ExamAcademicCategory",
