@@ -1,7 +1,10 @@
+<?php
+echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/foul-yoy");
+?>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="block-inner text-danger">
-            <h6 class="heading-hr">Grafik Pelanggaran Ujian Per Tahun
+            <h6 class="heading-hr">Grafik Pelanggaran Ujian Per Semester
                 <small class="display-block"><?= _APP_CORPORATE_FULL ?></small>
             </h6>
         </div>

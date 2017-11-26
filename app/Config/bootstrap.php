@@ -96,7 +96,7 @@ define("_FRONT_TEMPLATE_DIR", "front_template");
 define("_EMPTY_IMAGE", "/img/no_image.jpg");
 
 define("_APP_VERSION","1.0.0");
-define("_APP_NAME","Sistem Informasi Evaluasi Ujian");
+define("_APP_NAME","Sistem Informasi Pelaksanaan Evaluasi Ujian");
 define("_APP_REFERENCE_NAME","SIEUN");
 define("_APP_KEY","random");
 define("_APP_CORPORATE","FTIS UNPAR");
