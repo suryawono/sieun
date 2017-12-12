@@ -30,6 +30,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/account");
                             <th><?= __("Username") ?></th>
                             <th><?= __("Nama Depan") ?></th>
                             <th><?= __("Nama Belakang") ?></th>
+                            <th><?= __("Nomor Indentitas") ?></th>
                             <th><?= __("Email") ?></th>
                             <th><?= __("User Group") ?></th>
                             <th><?= __("Alamat") ?></th>
@@ -58,6 +59,7 @@ echo $this->element(_TEMPLATE_DIR . "/{$template}/filter/account");
                                     <td><?= $item['User']['username'] ?></td>
                                     <td><?= $item['Biodata']['first_name'] ?></td>
                                     <td><?= $item['Biodata']['last_name'] ?></td>
+                                    <td><?= $item['Biodata']['identity_number'] ?></td>
                                     <td><?= $item['User']['email'] ?></td>
                                     <td><?= $userGroups[$item['User']['user_group_id']] ?></td>
                                     <td><?= $item['Biodata']['address'] ?></td>
